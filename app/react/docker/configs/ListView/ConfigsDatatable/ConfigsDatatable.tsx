@@ -1,11 +1,11 @@
-import { Clipboard, Plus, Trash2 } from 'lucide-react';
+import { Clipboard } from 'lucide-react';
 
 import { Datatable, TableSettingsMenu } from '@@/datatables';
 import { TableSettingsMenuAutoRefresh } from '@@/datatables/TableSettingsMenuAutoRefresh';
 import { useRepeater } from '@@/datatables/useRepeater';
-import { Button } from '@@/buttons';
-import { Link } from '@@/Link';
+import { AddButton } from '@@/buttons';
 import { useTableState } from '@@/datatables/useTableState';
+import { DeleteButton } from '@@/buttons/DeleteButton';
 
 import { DockerConfig } from '../../types';
 
@@ -44,17 +44,13 @@ export function ConfigsDatatable({ dataset, onRefresh, onRemoveClick }: Props) {
       )}
       renderTableActions={(selectedRows) => (
         <div className="flex items-center gap-3">
-          <Button
-            icon={Trash2}
-            color="dangerlight"
-            onClick={() => onRemoveClick(selectedRows)}
+          <DeleteButton
             disabled={selectedRows.length === 0}
-          >
-            Remove
-          </Button>
-          <Button icon={Plus} as={Link} props={{ to: 'docker.configs.new' }}>
-            Add config
-          </Button>
+            onConfirmed={() => onRemoveClick(selectedRows)}
+            confirmMessage="Do you want to remove the selected config(s)?"
+          />
+
+          <AddButton>Add config</AddButton>
         </div>
       )}
     />

@@ -72,24 +72,8 @@
             <label class="control-label text-left"
               >Exec &nbsp;into container as <code>{{ ::formValues.user || 'default user' }}</code> using command
               <code>{{ formValues.isCustomCommand ? formValues.customCommand : formValues.command }}</code>
-              <portainer-tooltip
-                ng-if="$ctrl.BROWSER_OS_PLATFORM !== 'mac'"
-                message="'Within the console:<br />
-                Ctrl+Insert - Copy<br />
-                Shift+Insert - Paste<br />
-                or right-click -> Copy/Paste'"
-                set-html-message="true"
-              >
-              </portainer-tooltip>
-              <portainer-tooltip
-                ng-if="$ctrl.BROWSER_OS_PLATFORM === 'mac'"
-                message="'Within the console:<br />
-                Cmd+C - Copy<br />
-                Cmd+V - Paste<br />
-                or right-click -> Copy/Paste'"
-                set-html-message="true"
-              >
-              </portainer-tooltip
+              <terminal-tooltip ng-if="$ctrl.BROWSER_OS_PLATFORM !== 'mac'"> </terminal-tooltip>
+              <terminal-tooltip ng-if="$ctrl.BROWSER_OS_PLATFORM === 'mac'"> </terminal-tooltip
             ></label>
             <button type="button" class="btn btn-primary" ng-click="disconnect()">
               <span ng-show="state === states.connected">Disconnect</span>

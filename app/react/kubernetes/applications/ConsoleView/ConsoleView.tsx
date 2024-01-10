@@ -48,6 +48,10 @@ const editorConfig = {
   },
 } as const;
 
+export function TerminalTooltip() {
+  return <Tooltip message={editorConfig[BROWSER_OS_PLATFORM].tooltip} />;
+}
+
 interface StringDictionary {
   [index: string]: string;
 }
@@ -155,9 +159,7 @@ export function ConsoleView() {
                   className="col-sm-3 col-lg-2 control-label m-0 p-0 text-left"
                 >
                   Command
-                  <Tooltip
-                    message={editorConfig[BROWSER_OS_PLATFORM].tooltip}
-                  />
+                  <TerminalTooltip />
                 </label>
                 <div className="col-sm-8 input-group p-0">
                   <span className="input-group-addon">
